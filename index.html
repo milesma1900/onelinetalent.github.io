@@ -1,43 +1,818 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ONELINE TALENT</title>
+  <meta name="description" content="ONELINE TALENT 官方首页" />
   <style>
+    :root {
+      --bg: #07101d;
+      --bg-2: #0d1728;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.09);
+      --line: rgba(255,255,255,0.1);
+      --text: #f5f7fb;
+      --muted: rgba(245,247,251,0.68);
+      --soft: rgba(245,247,251,0.45);
+      --accent: #8db7ff;
+      --accent-2: #6c7cff;
+      --shadow: 0 24px 80px rgba(0,0,0,0.35);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: linear-gradient(135deg, #0b1220, #111827);
-      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(108,124,255,0.22), transparent 32%),
+        radial-gradient(circle at 85% 20%, rgba(141,183,255,0.14), transparent 24%),
+        linear-gradient(135deg, var(--bg) 0%, var(--bg-2) 52%, #111827 100%);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(7,16,29,0.68);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 80px;
     }
-    .box {
-      text-align: center;
-      padding: 40px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      max-width: 700px;
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
-    h1 {
-      font-size: 42px;
-      margin-bottom: 16px;
+
+    .brand-top {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.34em;
+      color: var(--soft);
     }
-    p {
-      font-size: 18px;
+
+    .brand-title {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: rgba(255,255,255,0.84);
+      font-size: 15px;
+    }
+
+    .nav-link,
+    .nav-button {
+      transition: 0.24s ease;
+    }
+
+    .nav-link:hover,
+    .nav-button:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .nav-cta:hover {
+      background: rgba(255,255,255,0.09);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 184px;
+      background: rgba(11, 19, 34, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.22s ease;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
       color: rgba(255,255,255,0.8);
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    .hero {
+      padding: 84px 0 36px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 36px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 28px 0 8px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(141,183,255,0.12);
+      border: 1px solid rgba(141,183,255,0.22);
+      color: #dce7ff;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero h1 {
+      margin: 22px 0 0;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 780px;
+    }
+
+    .hero p {
+      margin: 24px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.92;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.24s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #111827;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -10%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(108,124,255,0.28), transparent 62%);
+      pointer-events: none;
+    }
+
+    .entry-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      min-height: 100%;
+    }
+
+    .entry-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 330px;
+      padding: 26px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(8, 15, 27, 0.84);
+      transition: transform .26s ease, border-color .26s ease, background .26s ease;
+    }
+
+    .entry-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(12, 22, 38, 0.96);
+    }
+
+    .entry-card::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      top: -24px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(141,183,255,0.14), transparent 65%);
+      pointer-events: none;
+    }
+
+    .entry-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      font-size: 28px;
+    }
+
+    .entry-card h3 {
+      margin: 22px 0 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .entry-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .entry-link {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .sub-list {
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sub-list span {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .sub-list span:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .metric {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 26px 0 0;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-kicker {
+      color: var(--soft);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .section-desc {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-no {
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .feature-card h3 {
+      margin: 16px 0 0;
+      font-size: 28px;
+    }
+
+    .feature-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .timeline {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .timeline-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-step {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+    .timeline-card h4 {
+      margin: 14px 0 0;
+      font-size: 22px;
+    }
+
+    .timeline-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.8;
+    }
+
+    .faq-wrap {
+      margin-top: 18px;
+      padding: 32px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item + .faq-item {
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-item strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item span {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .contact {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+
+    .contact-main,
+    .contact-side {
+      padding: 30px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    }
+
+    .contact-main p,
+    .contact-side p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+      margin: 12px 0 0;
+    }
+
+    .contact-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-label {
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      color: #fff;
+      text-align: right;
+    }
+
+    .footer {
+      padding: 38px 0 64px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .footer-line {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 18px;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .entry-grid,
+      .feature-grid,
+      .timeline,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+      .nav {
+        min-height: 72px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 12px 14px;
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-panel,
+      .faq-wrap,
+      .contact-main,
+      .contact-side,
+      .feature-card,
+      .timeline-card,
+      .entry-card {
+        border-radius: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>ONELINE TALENT</h1>
-    <p>如果你看到这个深色页面，说明 GitHub Pages 已经正常了。</p>
-  </div>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-top">Official Site</span>
+        <span class="brand-title">ONELINE TALENT</span>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link" href="#home">首页</a>
+        <a class="nav-link" href="#profile">个人主页</a>
+        <div class="dropdown">
+          <a class="nav-button" href="#about">关于我们</a>
+          <div class="dropdown-menu">
+            <a href="#about">关于我们</a>
+            <a href="#faq">常见问题</a>
+            <a href="#contact">联系方式</a>
+          </div>
+        </div>
+        <a class="nav-cta" href="#apply">报名参加</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">创作者入口 · 项目介绍 · 在线报名</div>
+        <h1>一个更像正式项目官网的首页框架</h1>
+        <p>
+          这是根据你之前说的结构，重新做成的静态官网首页版本。首页保留三个核心入口：个人主页、关于我们、报名参加；其中“关于我们”带下拉菜单，便于进一步承载机构介绍、FAQ 和联系方式。整体视觉偏电影、创意、国际化，更适合继续延展成正式项目官网。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#apply">立即报名</a>
+          <a class="btn btn-secondary" href="#about">了解项目</a>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <strong>3</strong>
+            <span>核心入口结构</span>
+          </div>
+          <div class="metric">
+            <strong>1</strong>
+            <span>静态单文件部署</span>
+          </div>
+          <div class="metric">
+            <strong>∞</strong>
+            <span>可继续扩展模块</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="entry-grid">
+          <a class="entry-card" href="#profile">
+            <div class="entry-icon">👤</div>
+            <h3>个人主页</h3>
+            <p>用户注册、个人资料、创作者信息、项目记录与报名状态的统一入口。后续可扩展成完整的创作者中心。</p>
+            <span class="entry-link">进入页面 →</span>
+          </a>
+
+          <a class="entry-card" href="#about">
+            <div class="entry-icon">ℹ️</div>
+            <h3>关于我们</h3>
+            <p>承载品牌背景、项目宗旨、FAQ 及联系方式，负责建立整体调性与对外解释逻辑。</p>
+            <div class="sub-list">
+              <span>关于我们</span>
+              <span>常见问题</span>
+              <span>联系方式</span>
+            </div>
+            <span class="entry-link">查看详情 →</span>
+          </a>
+
+          <a class="entry-card" href="#apply">
+            <div class="entry-icon">✍️</div>
+            <h3>报名参加</h3>
+            <p>直接进入报名通道，可对接外部表单，也可继续升级为站内分步骤报名流程。</p>
+            <span class="entry-link">立即报名 →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Core Pages</div>
+          <h2 class="section-title">围绕你前面说的三大操作入口展开</h2>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card" id="profile">
+          <div class="feature-no">01</div>
+          <h3>个人主页</h3>
+          <p>这里可以放注册、登录、个人资料、作品上传、报名记录、项目进度、通知消息等功能。对于后续正式化运营，这一页会是用户留存和管理的核心。</p>
+        </div>
+
+        <div class="feature-card" id="about">
+          <div class="feature-no">02</div>
+          <h3>关于我们</h3>
+          <p>这里负责讲清楚你是谁、项目做什么、为什么存在、面向谁、能提供什么价值。对外传播时，这一页就是项目的第一层说明书。</p>
+        </div>
+
+        <div class="feature-card" id="apply">
+          <div class="feature-no">03</div>
+          <h3>报名参加</h3>
+          <p>这一页可以接报名入口、征集机制、时间规则、报名条件和费用说明。等你后面业务更明确后，还可以拆成多个类型的报名入口。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Process</div>
+          <h2 class="section-title">一个更清晰的用户操作路径</h2>
+          <p class="section-desc">你前面强调的是操作要直观，所以我把用户路径也梳理成了首页可承载的四步结构，后续你可以直接把它改成真实业务流程。</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="timeline-step">Step 01</div>
+          <h4>进入首页</h4>
+          <p>用户进入官网，第一眼看到项目定位和三个核心入口，不需要二次理解。</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-step">Step 02</div>
+          <h4>完成注册</h4>
+          <p>点击个人主页，建立个人账户和基础资料，为后续报名与管理做准备。</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-step">Step 03</div>
+          <h4>理解规则</h4>
+          <p>通过关于我们、FAQ、联系方式快速理解项目背景、参与逻辑与注意事项。</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-step">Step 04</div>
+          <h4>完成报名</h4>
+          <p>点击报名参加，进入具体提交流程，完成个人信息或项目资料提交。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">FAQ</div>
+          <h2 class="section-title">常见问题</h2>
+        </div>
+      </div>
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <strong>这个网站现在是什么版本？</strong>
+          <span>这是适合 GitHub Pages 的静态单文件版本，优点是部署简单、结构稳定，适合先把官网门面搭起来。</span>
+        </div>
+        <div class="faq-item">
+          <strong>后面还能加哪些模块？</strong>
+          <span>可以继续加作品展示、新闻动态、评委阵容、时间表、合作伙伴、往届回顾、下载中心、媒体报道等模块。</span>
+        </div>
+        <div class="faq-item">
+          <strong>报名按钮现在能直接提交吗？</strong>
+          <span>当前是示意入口。你后续可以把报名按钮替换成问卷链接、表单链接，或者我继续帮你做成站内报名页面。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">联系方式与对外信息</h2>
+          <p class="section-desc">这一部分我先做成标准官网联系模块，你后面把占位信息替换成真实资料即可。</p>
+        </div>
+      </div>
+      <div class="contact">
+        <div class="contact-main">
+          <h3>保持简洁，但要像正式官网</h3>
+          <p>你现在最需要的是先把对外门面立起来，所以这里的视觉控制在克制、专业、偏创意行业的范围内。等你确定项目名称、真实文案和表单链接后，这个页面就能直接进入正式使用阶段。</p>
+          <div class="hero-actions" style="margin-top:24px;">
+            <a class="btn btn-primary" href="mailto:hello@example.com">发送邮件</a>
+            <a class="btn btn-secondary" href="#home">返回顶部</a>
+          </div>
+        </div>
+        <div class="contact-side">
+          <h3>联系信息</h3>
+          <p>把这里替换成你的真实项目资料即可。</p>
+          <div class="contact-list">
+            <div class="contact-row">
+              <span class="contact-label">邮箱</span>
+              <span class="contact-value">hello@example.com</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">电话</span>
+              <span class="contact-value">+86 000 0000 0000</span>
+            </div>
+            <div class="contact-row">
+              <span class="contact-label">微信/公众号</span>
+              <span class="contact-value">ONELINE TALENT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <div class="footer-line"></div>
+    <div>© 2026 ONELINE TALENT. All Rights Reserved.</div>
+  </footer>
 </body>
 </html>
