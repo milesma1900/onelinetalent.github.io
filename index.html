@@ -3,37 +3,757 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>一句成像 | One-Line Talent</title>
-  <meta name="description" content="一句成像 One-Line Talent - 青年短片提案征集与扶持平台" />
+  <title>ONELINE TALENT</title>
+  <meta name="description" content="ONELINE TALENT - cinematic concept platform" />
   <style>
     :root {
-      --bg: #07101b;
-      --bg2: #0d1728;
-      --panel: rgba(255,255,255,0.06);
-      --panel-strong: rgba(255,255,255,0.09);
-      --line: rgba(255,255,255,0.1);
-      --text: #f3f6fb;
-      --muted: rgba(243,246,251,0.7);
-      --soft: rgba(243,246,251,0.48);
-      --accent: #8fb8ff;
-      --accent2: #6d7dff;
-      --success: #92f2c8;
-      --danger: #ffb5b5;
-      --radius-xl: 32px;
+      --bg: #060606;
+      --bg-soft: #0d0d0d;
+      --panel: #121212;
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text: #f5f5f2;
+      --muted: rgba(245,245,242,0.68);
+      --soft: rgba(245,245,242,0.42);
+      --accent: #ffffff;
+      --max: 1380px;
+      --radius-xl: 30px;
       --radius-lg: 24px;
       --radius-md: 18px;
-      --shadow: 0 24px 80px rgba(0,0,0,0.35);
-      --max: 1240px;
+      --shadow: 0 24px 90px rgba(0,0,0,0.45);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
       color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(6,6,6,0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 24px rgba(255,255,255,0.4);
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-copy small {
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      color: var(--soft);
+      text-transform: uppercase;
+    }
+
+    .brand-copy strong {
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      cursor: pointer;
+      transition: 0.24s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: 0.24s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    .nav-link:hover,
+    .nav-link.active { color: #fff; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 94px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(circle at top left, rgba(109,125,255,0.22), transparent 30%),
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.08), transparent 24%),
+        radial-gradient(circle at 82% 30%, rgba(255,255,255,0.06), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      padding: 80px 0 60px;
+    }
+
+    .hero-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.82);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .hero-meta {
+      max-width: 360px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .headline-wrap {
+      display: grid;
+      gap: 6px;
+    }
+
+    .headline-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.03em;
+      line-height: 0.9;
+      font-weight: 600;
+      letter-spacing: -0.07em;
+      text-transform: uppercase;
+      font-size: clamp(56px, 12vw, 174px);
+    }
+
+    .headline-line span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(34px) scale(0.98);
+      animation: revealChar 0.9s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    @keyframes revealChar {
+      from { opacity: 0; transform: translateY(34px) scale(0.98); filter: blur(8px); }
+      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: end;
+      margin-top: 10px;
+    }
+
+    .hero-summary {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.95;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: 0.24s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      font-weight: 600;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+      color: #fff;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .scroll-mark {
+      margin-top: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--soft);
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 56px;
+      height: 1px;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .section {
+      padding: 78px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      color: var(--soft);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      margin: 0;
+    }
+
+    .section-desc {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.92;
+      font-size: 15px;
+      max-width: 720px;
+      justify-self: end;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .work-card {
+      position: relative;
+      min-height: 420px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      transition: transform 0.28s ease, border-color 0.28s ease;
+      cursor: pointer;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .work-lg { grid-column: span 7; }
+    .work-sm { grid-column: span 5; }
+    .work-half { grid-column: span 6; }
+
+    .work-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(1) contrast(1.04) brightness(0.74);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .work-card:hover .work-image {
+      transform: scale(1.04);
+      filter: grayscale(1) contrast(1.08) brightness(0.82);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.68) 55%, rgba(0,0,0,0.88));
+    }
+
+    .work-content {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 22px;
+      z-index: 2;
+    }
+
+    .work-tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.84);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .work-title {
+      margin-top: 16px;
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .work-meta {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,0.74);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .statement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .statement-card,
+    .info-card,
+    .footer-panel {
+      padding: 26px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .statement-card h3,
+    .info-card h3,
+    .footer-panel h3 {
+      margin: 14px 0 0;
+      font-size: 26px;
+      letter-spacing: -0.03em;
+    }
+
+    .statement-card p,
+    .info-card p,
+    .footer-panel p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+    }
+
+    .statement-no,
+    .info-label {
+      color: var(--soft);
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      font-size: 14px;
+    }
+
+    .info-row span:first-child { color: var(--soft); }
+    .info-row span:last-child { color: #fff; text-align: right; }
+
+    .footer {
+      padding: 26px 0 60px;
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .hero-bottom,
+      .section-head,
+      .bottom-grid,
+      .statement-grid { grid-template-columns: 1fr; }
+      .section-desc { justify-self: start; }
+      .hero-actions { justify-content: flex-start; }
+      .work-lg,
+      .work-sm,
+      .work-half { grid-column: span 12; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+      .nav {
+        min-height: 72px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+      .nav-links { gap: 14px; }
+      .hero { padding-top: 86px; }
+      .hero-summary { font-size: 16px; }
+      .hero-meta { text-align: left; }
+      .headline-line { letter-spacing: -0.05em; }
+      .work-card { min-height: 340px; border-radius: 24px; }
+      .statement-grid { grid-template-columns: 1fr; }
+      .statement-card,
+      .info-card,
+      .footer-panel { border-radius: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+        <span class="brand-mark"></span>
+        <div class="brand-copy">
+          <small>Official Platform</small>
+          <strong>ONELINE TALENT</strong>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-link active" href="#hero">Home</a>
+        <a class="nav-link" href="#works">Works</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#info">Info</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="hero-topline reveal visible">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Cinematic Ideas Platform</div>
+        <div class="hero-meta">A monochrome, high-contrast landing page built for a film-forward creative platform. Large-scale typography, restrained motion, and exhibition-led project presentation.</div>
+      </div>
+
+      <div class="headline-wrap" id="headlineWrap"></div>
+
+      <div class="hero-bottom reveal">
+        <p class="hero-summary">ONELINE TALENT is conceived as a screen-first platform for concepts, moving images, and emerging directors. The homepage opens with a large-scale animated wordmark, then transitions downward into a curated exhibition of selected works, and closes with institutional information and contact structure.</p>
+        <div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#works">View Works</a>
+            <a class="btn btn-secondary" href="#info">Basic Info</a>
+          </div>
+          <div class="scroll-mark"><span class="scroll-line"></span>Scroll Down</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="works">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Selected Works</div>
+          <h2 class="section-title">A scrolling gallery of projects, presented like a festival showcase wall.</h2>
+        </div>
+        <p class="section-desc">The content below is placeholder material for now. It is structured as a cinematic exhibition grid, with varying image scales, title blocks, and minimal metadata. You can later replace each card with real projects, stills, loglines, trailer links, or shortlist entries.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="work-card work-lg reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Feature Concept</span>
+            <h3 class="work-title">The City That Forgot Its Faces</h3>
+            <div class="work-meta"><span>Identity thriller / urban mutation / 2026 slate</span><span>01</span></div>
+          </div>
+        </article>
+
+        <article class="work-card work-sm reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Short Film</span>
+            <h3 class="work-title">After The Neon Rain</h3>
+            <div class="work-meta"><span>Noir memory piece / one-night structure</span><span>02</span></div>
+          </div>
+        </article>
+
+        <article class="work-card work-half reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Emerging Director</span>
+            <h3 class="work-title">Static Summer, Moving Water</h3>
+            <div class="work-meta"><span>Coastal coming-of-age / observational drama</span><span>03</span></div>
+          </div>
+        </article>
+
+        <article class="work-card work-half reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Experimental</span>
+            <h3 class="work-title">White Noise For The Last Audience</h3>
+            <div class="work-meta"><span>Performance cinema / installation crossover</span><span>04</span></div>
+          </div>
+        </article>
+
+        <article class="work-card work-sm reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Series Pitch</span>
+            <h3 class="work-title">Hotel No. 11</h3>
+            <div class="work-meta"><span>Anthology mystery / limited series moodboard</span><span>05</span></div>
+          </div>
+        </article>
+
+        <article class="work-card work-lg reveal">
+          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1600&q=80');"></div>
+          <div class="work-overlay"></div>
+          <div class="work-content">
+            <span class="work-tag">Director's Showcase</span>
+            <h3 class="work-title">The Silence Archive</h3>
+            <div class="work-meta"><span>Black-and-white psychological drama / archive fiction</span><span>06</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Platform Statement</div>
+          <h2 class="section-title">A severe visual language, built for a film-first brand.</h2>
+        </div>
+        <p class="section-desc">This section translates the overall tone into three concise statements: concept access, curated presentation, and future-facing discovery. It keeps the page elegant while still giving the site an institutional voice.</p>
+      </div>
+
+      <div class="statement-grid">
+        <div class="statement-card reveal">
+          <div class="statement-no">01</div>
+          <h3>Concept First</h3>
+          <p>The platform privileges strong cinematic premises and direct expression. It is designed to foreground the idea before the bureaucracy around it.</p>
+        </div>
+        <div class="statement-card reveal">
+          <div class="statement-no">02</div>
+          <h3>Curated Display</h3>
+          <p>Projects are presented with the clarity of a festival catalogue and the visual restraint of a gallery interface: large image blocks, sparse copy, and exact hierarchy.</p>
+        </div>
+        <div class="statement-card reveal">
+          <div class="statement-no">03</div>
+          <h3>Talent Discovery</h3>
+          <p>The site works as both a public-facing stage and an industry-facing discovery tool, capable of evolving into submissions, selections, and creative partnerships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="info">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">Basic Information</div>
+          <h2 class="section-title">At the bottom: a compact institutional footer with placeholder details.</h2>
+        </div>
+        <p class="section-desc">This final section is intentionally restrained. It keeps the mood intact while offering the practical layer every official site needs: contact, office, availability, and platform description.</p>
+      </div>
+
+      <div class="bottom-grid">
+        <div class="footer-panel reveal">
+          <div class="info-label">About ONELINE TALENT</div>
+          <h3>Screen concepts, curated with the discipline of a festival platform.</h3>
+          <p>ONELINE TALENT is a fictional placeholder identity for now. This block can later be replaced with your official initiative description, origin story, submission philosophy, or mission statement.</p>
+          <p>For the moment, it functions as a polished institutional closing statement in line with the monochrome homepage direction.</p>
+        </div>
+
+        <div class="info-card reveal">
+          <div class="info-label">Contact & Details</div>
+          <h3>Placeholder Information</h3>
+          <div class="info-list">
+            <div class="info-row"><span>Email</span><span>contact@onelinetalent.com</span></div>
+            <div class="info-row"><span>Office</span><span>Level 08, West Bund Arts District</span></div>
+            <div class="info-row"><span>City</span><span>Shanghai / Sanya / Online</span></div>
+            <div class="info-row"><span>Working Hours</span><span>Mon — Fri / 10:00 — 18:00</span></div>
+            <div class="info-row"><span>Instagram</span><span>@onelinetalent</span></div>
+            <div class="info-row"><span>WeChat</span><span>ONELINE TALENT</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer container">© 2026 ONELINE TALENT — cinematic interface concept</footer>
+
+  <script>
+    const textLines = ["ONELINE", "TALENT"];
+    const wrap = document.getElementById('headlineWrap');
+
+    textLines.forEach((line, lineIndex) => {
+      const row = document.createElement('div');
+      row.className = 'headline-line';
+      line.split('').forEach((char, charIndex) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.animationDelay = `${0.08 * charIndex + lineIndex * 0.24}s`;
+        row.appendChild(span);
+      });
+      wrap.appendChild(row);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+    sections.forEach(section => navObserver.observe(section));
+  </script>
+</body>
+</html>
         radial-gradient(circle at 86% 14%, rgba(143,184,255,0.16), transparent 24%),
         linear-gradient(135deg, var(--bg) 0%, var(--bg2) 55%, #101827 100%);
       min-height: 100vh;
