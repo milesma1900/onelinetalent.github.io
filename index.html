@@ -4,22 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ONELINE TALENT</title>
-  <meta name="description" content="ONELINE TALENT - cinematic concept platform" />
+  <meta name="description" content="ONELINE TALENT 中文官网" />
   <style>
     :root {
-      --bg: #060606;
-      --bg-soft: #0d0d0d;
+      --bg: #050505;
+      --bg-soft: #0b0b0b;
       --panel: #121212;
       --line: rgba(255,255,255,0.08);
       --line-strong: rgba(255,255,255,0.14);
       --text: #f5f5f2;
-      --muted: rgba(245,245,242,0.68);
+      --muted: rgba(245,245,242,0.72);
       --soft: rgba(245,245,242,0.42);
-      --accent: #ffffff;
       --max: 1380px;
-      --radius-xl: 30px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
       --shadow: 0 24px 90px rgba(0,0,0,0.45);
     }
 
@@ -29,13 +27,12 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
       overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    button { font: inherit; }
+    button, input, textarea, select { font: inherit; }
 
     .container {
       width: min(var(--max), calc(100% - 44px));
@@ -48,9 +45,9 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(6,6,6,0.78);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(5,5,5,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
@@ -66,6 +63,7 @@
       align-items: center;
       gap: 14px;
       cursor: pointer;
+      user-select: none;
     }
 
     .brand-mark {
@@ -73,7 +71,7 @@
       height: 14px;
       border-radius: 50%;
       background: #fff;
-      box-shadow: 0 0 24px rgba(255,255,255,0.4);
+      box-shadow: 0 0 24px rgba(255,255,255,0.36);
     }
 
     .brand-copy {
@@ -98,16 +96,17 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
     .nav-link {
       font-size: 14px;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.84);
       cursor: pointer;
       transition: 0.24s ease;
       position: relative;
+      user-select: none;
     }
 
     .nav-link::after {
@@ -123,17 +122,23 @@
 
     .nav-link:hover::after,
     .nav-link.active::after { width: 100%; }
-
     .nav-link:hover,
     .nav-link.active { color: #fff; }
 
-    .hero {
+    .page {
+      display: none;
       min-height: 100vh;
+      padding-top: 78px;
+    }
+
+    .page.active { display: block; }
+
+    .hero {
+      min-height: calc(100vh - 78px);
       display: flex;
       align-items: center;
-      padding-top: 94px;
       position: relative;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid var(--line);
     }
 
     .hero::before {
@@ -151,7 +156,6 @@
       position: relative;
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr;
       gap: 36px;
       padding: 80px 0 60px;
     }
@@ -193,10 +197,7 @@
       text-align: right;
     }
 
-    .headline-wrap {
-      display: grid;
-      gap: 6px;
-    }
+    .headline-wrap { display: grid; gap: 6px; }
 
     .headline-line {
       display: flex;
@@ -206,7 +207,7 @@
       font-weight: 600;
       letter-spacing: -0.07em;
       text-transform: uppercase;
-      font-size: clamp(56px, 12vw, 174px);
+      font-size: clamp(54px, 12vw, 170px);
     }
 
     .headline-line span {
@@ -223,7 +224,7 @@
 
     .hero-bottom {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: 0.95fr 1.05fr;
       gap: 28px;
       align-items: end;
       margin-top: 10px;
@@ -233,7 +234,7 @@
       color: var(--muted);
       font-size: 18px;
       line-height: 1.95;
-      max-width: 620px;
+      max-width: 680px;
     }
 
     .hero-actions {
@@ -253,6 +254,7 @@
       border: 1px solid rgba(255,255,255,0.12);
       transition: 0.24s ease;
       cursor: pointer;
+      user-select: none;
     }
 
     .btn-primary {
@@ -288,7 +290,7 @@
 
     .section {
       padding: 78px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid var(--line);
     }
 
     .section-head {
@@ -341,11 +343,7 @@
       cursor: pointer;
     }
 
-    .work-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255,255,255,0.16);
-    }
-
+    .work-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.16); }
     .work-lg { grid-column: span 7; }
     .work-sm { grid-column: span 5; }
     .work-half { grid-column: span 6; }
@@ -409,40 +407,23 @@
       line-height: 1.8;
     }
 
-    .statement-grid {
+    .bottom-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 18px;
-      margin-top: 18px;
     }
 
-    .statement-card,
+    .footer-panel,
     .info-card,
-    .footer-panel {
-      padding: 26px;
+    .content-card,
+    .form-panel,
+    .profile-panel {
+      padding: 28px;
       border-radius: 24px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
     }
 
-    .statement-card h3,
-    .info-card h3,
-    .footer-panel h3 {
-      margin: 14px 0 0;
-      font-size: 26px;
-      letter-spacing: -0.03em;
-    }
-
-    .statement-card p,
-    .info-card p,
-    .footer-panel p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      line-height: 1.9;
-      font-size: 14px;
-    }
-
-    .statement-no,
     .info-label {
       color: var(--soft);
       font-size: 11px;
@@ -450,33 +431,167 @@
       text-transform: uppercase;
     }
 
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: start;
+    .footer-panel h3,
+    .info-card h3,
+    .content-card h3,
+    .form-panel h3,
+    .profile-panel h3 {
+      margin: 14px 0 0;
+      font-size: 26px;
+      letter-spacing: -0.03em;
     }
 
-    .info-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
+    .footer-panel p,
+    .info-card p,
+    .content-card p,
+    .form-panel p,
+    .profile-panel p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
     }
 
-    .info-row {
-      display: flex;
-      justify-content: space-between;
+    .page-hero {
+      padding: 54px 0 26px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .page-hero .section-kicker { margin-bottom: 10px; }
+
+    .page-title {
+      font-size: clamp(40px, 6vw, 78px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .page-intro {
+      margin-top: 18px;
+      max-width: 880px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.95;
+    }
+
+    .content-stack {
+      display: grid;
       gap: 18px;
-      align-items: center;
+      padding: 34px 0 64px;
+    }
+
+    .content-grid-2,
+    .content-grid-3 {
+      display: grid;
+      gap: 18px;
+    }
+
+    .content-grid-2 { grid-template-columns: 1.1fr 0.9fr; }
+    .content-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .list {
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
       padding: 14px 16px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.88);
       font-size: 14px;
+      line-height: 1.8;
     }
 
-    .info-row span:first-child { color: var(--soft); }
-    .info-row span:last-child { color: #fff; text-align: right; }
+    .profile-top {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .profile-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .metric-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric-card strong { display: block; font-size: 22px; }
+    .metric-card span { display: block; margin-top: 6px; color: var(--soft); font-size: 13px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .field,
+    .field-full {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-full { grid-column: 1 / -1; }
+
+    label { font-size: 14px; color: rgba(255,255,255,0.88); }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      outline: none;
+    }
+
+    textarea { resize: vertical; min-height: 120px; }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.34); }
+    input:focus, textarea:focus, select:focus { border-color: rgba(255,255,255,0.28); }
+
+    .submit-row {
+      margin-top: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .submit-status {
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+      display: none;
+    }
+
+    .submit-status.show { display: inline-block; }
 
     .footer {
       padding: 26px 0 60px;
@@ -501,7 +616,10 @@
       .hero-bottom,
       .section-head,
       .bottom-grid,
-      .statement-grid { grid-template-columns: 1fr; }
+      .content-grid-2,
+      .content-grid-3,
+      .profile-metrics,
+      .form-grid { grid-template-columns: 1fr; }
       .section-desc { justify-self: start; }
       .hero-actions { justify-content: flex-start; }
       .work-lg,
@@ -518,196 +636,348 @@
         padding: 14px 0;
       }
       .nav-links { gap: 14px; }
-      .hero { padding-top: 86px; }
-      .hero-summary { font-size: 16px; }
+      .hero-summary,
+      .page-intro { font-size: 16px; }
       .hero-meta { text-align: left; }
       .headline-line { letter-spacing: -0.05em; }
       .work-card { min-height: 340px; border-radius: 24px; }
-      .statement-grid { grid-template-columns: 1fr; }
-      .statement-card,
+      .footer-panel,
       .info-card,
-      .footer-panel { border-radius: 22px; }
+      .content-card,
+      .form-panel,
+      .profile-panel { border-radius: 22px; }
+      .profile-top { grid-template-columns: 1fr; }
+      .avatar { width: 74px; height: 74px; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container nav">
-      <div class="brand" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
+      <div class="brand" onclick="showPage('home')">
         <span class="brand-mark"></span>
         <div class="brand-copy">
           <small>Official Platform</small>
           <strong>ONELINE TALENT</strong>
         </div>
       </div>
-      <nav class="nav-links">
-        <a class="nav-link active" href="#hero">Home</a>
-        <a class="nav-link" href="#works">Works</a>
-        <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#info">Info</a>
+      <nav class="nav-links" id="navLinks">
+        <span class="nav-link" data-page="home" onclick="showPage('home')">首页</span>
+        <span class="nav-link" data-page="works" onclick="scrollHome('works')">作品</span>
+        <span class="nav-link" data-page="about" onclick="showPage('about')">关于我们</span>
+        <span class="nav-link" data-page="profile" onclick="showPage('profile')">个人主页</span>
+        <span class="nav-link" data-page="apply" onclick="showPage('apply')">报名参加</span>
+        <span class="nav-link" data-page="info" onclick="scrollHome('info')">基本信息</span>
       </nav>
     </div>
   </header>
 
-  <section class="hero" id="hero">
-    <div class="container hero-inner">
-      <div class="hero-topline reveal visible">
-        <div class="eyebrow"><span class="eyebrow-dot"></span>Cinematic Ideas Platform</div>
-        <div class="hero-meta">A monochrome, high-contrast landing page built for a film-forward creative platform. Large-scale typography, restrained motion, and exhibition-led project presentation.</div>
-      </div>
-
-      <div class="headline-wrap" id="headlineWrap"></div>
-
-      <div class="hero-bottom reveal">
-        <p class="hero-summary">ONELINE TALENT is conceived as a screen-first platform for concepts, moving images, and emerging directors. The homepage opens with a large-scale animated wordmark, then transitions downward into a curated exhibition of selected works, and closes with institutional information and contact structure.</p>
-        <div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#works">View Works</a>
-            <a class="btn btn-secondary" href="#info">Basic Info</a>
+  <main>
+    <section class="page active" id="page-home">
+      <section class="hero" id="hero">
+        <div class="container hero-inner">
+          <div class="hero-topline reveal visible">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>创意影像提案平台</div>
+            <div class="hero-meta">黑白主调，极简影展化视觉。首页只保留首屏、作品展示和底部基本信息。个人主页、关于我们、报名参加全部改为点击后进入的新页面，不再出现在首页下滑区域。</div>
           </div>
-          <div class="scroll-mark"><span class="scroll-line"></span>Scroll Down</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section" id="works">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-kicker">Selected Works</div>
-          <h2 class="section-title">A scrolling gallery of projects, presented like a festival showcase wall.</h2>
-        </div>
-        <p class="section-desc">The content below is placeholder material for now. It is structured as a cinematic exhibition grid, with varying image scales, title blocks, and minimal metadata. You can later replace each card with real projects, stills, loglines, trailer links, or shortlist entries.</p>
-      </div>
+          <div class="headline-wrap" id="headlineWrap"></div>
 
-      <div class="work-grid">
-        <article class="work-card work-lg reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Feature Concept</span>
-            <h3 class="work-title">The City That Forgot Its Faces</h3>
-            <div class="work-meta"><span>Identity thriller / urban mutation / 2026 slate</span><span>01</span></div>
-          </div>
-        </article>
-
-        <article class="work-card work-sm reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Short Film</span>
-            <h3 class="work-title">After The Neon Rain</h3>
-            <div class="work-meta"><span>Noir memory piece / one-night structure</span><span>02</span></div>
-          </div>
-        </article>
-
-        <article class="work-card work-half reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Emerging Director</span>
-            <h3 class="work-title">Static Summer, Moving Water</h3>
-            <div class="work-meta"><span>Coastal coming-of-age / observational drama</span><span>03</span></div>
-          </div>
-        </article>
-
-        <article class="work-card work-half reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Experimental</span>
-            <h3 class="work-title">White Noise For The Last Audience</h3>
-            <div class="work-meta"><span>Performance cinema / installation crossover</span><span>04</span></div>
-          </div>
-        </article>
-
-        <article class="work-card work-sm reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Series Pitch</span>
-            <h3 class="work-title">Hotel No. 11</h3>
-            <div class="work-meta"><span>Anthology mystery / limited series moodboard</span><span>05</span></div>
-          </div>
-        </article>
-
-        <article class="work-card work-lg reveal">
-          <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1600&q=80');"></div>
-          <div class="work-overlay"></div>
-          <div class="work-content">
-            <span class="work-tag">Director's Showcase</span>
-            <h3 class="work-title">The Silence Archive</h3>
-            <div class="work-meta"><span>Black-and-white psychological drama / archive fiction</span><span>06</span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-kicker">Platform Statement</div>
-          <h2 class="section-title">A severe visual language, built for a film-first brand.</h2>
-        </div>
-        <p class="section-desc">This section translates the overall tone into three concise statements: concept access, curated presentation, and future-facing discovery. It keeps the page elegant while still giving the site an institutional voice.</p>
-      </div>
-
-      <div class="statement-grid">
-        <div class="statement-card reveal">
-          <div class="statement-no">01</div>
-          <h3>Concept First</h3>
-          <p>The platform privileges strong cinematic premises and direct expression. It is designed to foreground the idea before the bureaucracy around it.</p>
-        </div>
-        <div class="statement-card reveal">
-          <div class="statement-no">02</div>
-          <h3>Curated Display</h3>
-          <p>Projects are presented with the clarity of a festival catalogue and the visual restraint of a gallery interface: large image blocks, sparse copy, and exact hierarchy.</p>
-        </div>
-        <div class="statement-card reveal">
-          <div class="statement-no">03</div>
-          <h3>Talent Discovery</h3>
-          <p>The site works as both a public-facing stage and an industry-facing discovery tool, capable of evolving into submissions, selections, and creative partnerships.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="info">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="section-kicker">Basic Information</div>
-          <h2 class="section-title">At the bottom: a compact institutional footer with placeholder details.</h2>
-        </div>
-        <p class="section-desc">This final section is intentionally restrained. It keeps the mood intact while offering the practical layer every official site needs: contact, office, availability, and platform description.</p>
-      </div>
-
-      <div class="bottom-grid">
-        <div class="footer-panel reveal">
-          <div class="info-label">About ONELINE TALENT</div>
-          <h3>Screen concepts, curated with the discipline of a festival platform.</h3>
-          <p>ONELINE TALENT is a fictional placeholder identity for now. This block can later be replaced with your official initiative description, origin story, submission philosophy, or mission statement.</p>
-          <p>For the moment, it functions as a polished institutional closing statement in line with the monochrome homepage direction.</p>
-        </div>
-
-        <div class="info-card reveal">
-          <div class="info-label">Contact & Details</div>
-          <h3>Placeholder Information</h3>
-          <div class="info-list">
-            <div class="info-row"><span>Email</span><span>contact@onelinetalent.com</span></div>
-            <div class="info-row"><span>Office</span><span>Level 08, West Bund Arts District</span></div>
-            <div class="info-row"><span>City</span><span>Shanghai / Sanya / Online</span></div>
-            <div class="info-row"><span>Working Hours</span><span>Mon — Fri / 10:00 — 18:00</span></div>
-            <div class="info-row"><span>Instagram</span><span>@onelinetalent</span></div>
-            <div class="info-row"><span>WeChat</span><span>ONELINE TALENT</span></div>
+          <div class="hero-bottom reveal">
+            <p class="hero-summary">ONELINE TALENT 以一句话电影概念为入口，面向青年导演、编剧与创作者开放。首页承担品牌展示与作品陈列功能，详细介绍、个人中心与报名表单，则通过独立页面承接，结构更清晰，也更像正式官网。</p>
+            <div>
+              <div class="hero-actions">
+                <span class="btn btn-primary" onclick="showPage('apply')">立即报名</span>
+                <span class="btn btn-secondary" onclick="showPage('about')">了解项目</span>
+              </div>
+              <div class="scroll-mark"><span class="scroll-line"></span>向下查看作品</div>
+            </div>
           </div>
         </div>
+      </section>
+
+      <section class="section" id="works">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Selected Works</div>
+              <h2 class="section-title">作品展示</h2>
+            </div>
+            <p class="section-desc">这里先放占位项目，用于模拟影展官网式的作品展示墙。后续你可以替换为真实的入围项目、剧照、主视觉、海报、预告片入口或导演简介。</p>
+          </div>
+
+          <div class="work-grid">
+            <article class="work-card work-lg reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">长片概念</span>
+                <h3 class="work-title">城市忘记了所有人的脸</h3>
+                <div class="work-meta"><span>身份悬疑 / 都市变形 / 2026 企划</span><span>01</span></div>
+              </div>
+            </article>
+
+            <article class="work-card work-sm reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">短片项目</span>
+                <h3 class="work-title">霓虹雨之后</h3>
+                <div class="work-meta"><span>黑色记忆 / 一夜结构</span><span>02</span></div>
+              </div>
+            </article>
+
+            <article class="work-card work-half reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">青年导演</span>
+                <h3 class="work-title">静止的夏天，流动的海</h3>
+                <div class="work-meta"><span>海边成长 / 观察式剧情</span><span>03</span></div>
+              </div>
+            </article>
+
+            <article class="work-card work-half reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">实验影像</span>
+                <h3 class="work-title">最后一个观众的白噪音</h3>
+                <div class="work-meta"><span>行为影像 / 装置延展</span><span>04</span></div>
+              </div>
+            </article>
+
+            <article class="work-card work-sm reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&w=1200&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">剧集提案</span>
+                <h3 class="work-title">十一号旅馆</h3>
+                <div class="work-meta"><span>悬疑单元 / 限定剧集气质稿</span><span>05</span></div>
+              </div>
+            </article>
+
+            <article class="work-card work-lg reveal">
+              <div class="work-image" style="background-image:url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?auto=format&fit=crop&w=1600&q=80');"></div>
+              <div class="work-overlay"></div>
+              <div class="work-content">
+                <span class="work-tag">导演展示</span>
+                <h3 class="work-title">沉默档案馆</h3>
+                <div class="work-meta"><span>黑白心理剧 / 档案虚构</span><span>06</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="info">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Basic Information</div>
+              <h2 class="section-title">基本信息</h2>
+            </div>
+            <p class="section-desc">首页底部只保留最基本的机构信息与联系方式，便于整体视觉收束。后续可以替换为你的真实项目名称、地址、公众号、邮箱和合作通道。</p>
+          </div>
+
+          <div class="bottom-grid">
+            <div class="footer-panel reveal">
+              <div class="info-label">关于 ONELINE TALENT</div>
+              <h3>一个为电影概念、青年导演与创作潜力服务的展示型平台。</h3>
+              <p>这里目前是占位文案。你后面可以换成《一句成像》的正式项目介绍、发起缘由、征集宗旨，或者电影节单元的标准官方简介。</p>
+              <p>这一块的任务不是讲完整规则，而是作为首页的机构收束段落，保持高级、克制、可信。</p>
+            </div>
+
+            <div class="info-card reveal">
+              <div class="info-label">联系与资料</div>
+              <h3>占位信息</h3>
+              <ul class="list">
+                <li>邮箱：contact@onelinetalent.com</li>
+                <li>办公地点：上海西岸 / 三亚 / 线上协作</li>
+                <li>工作时间：周一至周五 10:00 — 18:00</li>
+                <li>微信公众号：ONELINE TALENT</li>
+                <li>商务合作：brand@onelinetalent.com</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="page-about">
+      <div class="container page-hero">
+        <div class="section-kicker">About The Project</div>
+        <h1 class="page-title">关于我们</h1>
+        <p class="page-intro">这是单独页面，不再出现在首页下滑区域。本页用于承接项目介绍、赛制逻辑、品牌定位、服务内容与官方说明，结构更符合正式官网的内容组织方式。</p>
       </div>
-    </div>
-  </section>
+      <div class="container content-stack">
+        <div class="content-card">
+          <div class="info-label">项目概述</div>
+          <h3>一句成像是什么</h3>
+          <p>一句成像是一个面向青年导演、编剧、影视学生和跨界创作者的短片提案征集与扶持平台。创作者以一句话电影概念作为入口，通过报名进入项目池，再经过筛选、评审与扶持，逐步形成从概念到成片的闭环。</p>
+        </div>
+        <div class="content-grid-3">
+          <div class="content-card">
+            <div class="info-label">为什么做</div>
+            <h3>降低入口门槛</h3>
+            <p>很多好项目停留在概念期，不是创意不够，而是缺少被看见的入口。平台希望解决“有概念，但无入口”的问题。</p>
+          </div>
+          <div class="content-card">
+            <div class="info-label">机会</div>
+            <h3>提高发现效率</h3>
+            <p>相比传统重材料、低频次的扶持模式，一句话概念更轻、更快，也更适合社交媒体时代的传播和筛选机制。</p>
+          </div>
+          <div class="content-card">
+            <div class="info-label">面向谁</div>
+            <h3>青年创作者</h3>
+            <p>18—35 岁导演、编剧、影视学生、青年创作者、广告导演转叙事导演，以及有电影创意但暂时没有现实入口的人。</p>
+          </div>
+        </div>
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="info-label">平台服务</div>
+            <h3>平台能提供什么</h3>
+            <ul class="list">
+              <li>项目征集与筛选</li>
+              <li>现金扶持与器材支持</li>
+              <li>后期、导师、传播与展映资源</li>
+              <li>人才库沉淀与后续项目匹配</li>
+            </ul>
+          </div>
+          <div class="content-card">
+            <div class="info-label">官方说明</div>
+            <h3>联系与合作</h3>
+            <ul class="list">
+              <li>官方邮箱：hello@onelinetalent.com</li>
+              <li>商务合作：brand@onelinetalent.com</li>
+              <li>公众号：一句成像 One-Line Talent</li>
+              <li>咨询时间：工作日 10:00—18:00</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-profile">
+      <div class="container page-hero">
+        <div class="section-kicker">Creator Center</div>
+        <h1 class="page-title">个人主页</h1>
+        <p class="page-intro">这是点击后进入的独立页面，用于模拟创作者中心。这里不再属于首页展示内容，而是作为后续可继续扩展的用户中心界面。</p>
+      </div>
+      <div class="container content-stack">
+        <div class="profile-panel">
+          <div class="profile-top">
+            <div class="avatar">导演</div>
+            <div>
+              <div class="info-label">创作者档案</div>
+              <h3>张一行 / 青年导演 · 编剧</h3>
+              <p>来自电影学院短片创作方向，关注都市异化、代际关系与高概念叙事。当前正在开发项目《她醒来时拥有别人的脸》。</p>
+            </div>
+          </div>
+          <div class="profile-metrics">
+            <div class="metric-card"><strong>03</strong><span>累计提交项目</span></div>
+            <div class="metric-card"><strong>01</strong><span>入围 shortlist</span></div>
+            <div class="metric-card"><strong>A</strong><span>创作者评级</span></div>
+          </div>
+        </div>
+        <div class="content-grid-2">
+          <div class="content-card">
+            <div class="info-label">最近一次提交</div>
+            <h3>项目状态</h3>
+            <p>项目名称：《她醒来时拥有别人的脸》</p>
+            <p>一句话概念：一名沉迷外貌管理的年轻女性在一次医美事故后，每天醒来都会变成另一个人，她必须在崩塌的身份里找回自我。</p>
+            <ul class="list">
+              <li>当前状态：待复核</li>
+              <li>系统提醒：请补充视觉参考图</li>
+              <li>标签：高概念 / 女性叙事 / 都市心理</li>
+            </ul>
+          </div>
+          <div class="content-card">
+            <div class="info-label">可继续扩展</div>
+            <h3>后续功能</h3>
+            <ul class="list">
+              <li>登录与短信验证</li>
+              <li>作品管理与修改记录</li>
+              <li>报名进度与通知中心</li>
+              <li>付款记录与发票申请</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-apply">
+      <div class="container page-hero">
+        <div class="section-kicker">Submission Form</div>
+        <h1 class="page-title">报名参加</h1>
+        <p class="page-intro">这是点击后进入的独立报名页面。当前为静态演示版，主要先完成结构和视觉。后续可接入飞书表单、Google Forms、Notion 或自建数据库。</p>
+      </div>
+      <div class="container content-stack">
+        <div class="form-panel">
+          <div class="info-label">报名表单</div>
+          <h3>一句成像报名表</h3>
+          <p>请尽量把一句话概念写得明确、有画面感，并在资金用途说明中说明扶持资金的使用方向。当前提交只做前端演示，不会真实入库。</p>
+          <form class="form-grid" id="applyForm">
+            <div class="field">
+              <label>项目名称</label>
+              <input type="text" placeholder="例如：她醒来时拥有别人的脸" />
+            </div>
+            <div class="field">
+              <label>报名类型</label>
+              <select>
+                <option>早鸟报名 29 元</option>
+                <option>标准报名 39 元</option>
+                <option>带简评版 59 元</option>
+              </select>
+            </div>
+            <div class="field-full">
+              <label>一句话概念</label>
+              <textarea placeholder="请用一句话概括你的电影概念。"></textarea>
+            </div>
+            <div class="field-full">
+              <label>100—200 字项目简介</label>
+              <textarea placeholder="请补充故事背景、角色关系、核心冲突与项目气质。"></textarea>
+            </div>
+            <div class="field-full">
+              <label>资金用途说明</label>
+              <textarea placeholder="例如：器材、场景、美术、后期声音等。"></textarea>
+            </div>
+            <div class="field">
+              <label>主创姓名</label>
+              <input type="text" placeholder="填写导演或主创姓名" />
+            </div>
+            <div class="field">
+              <label>身份方向</label>
+              <select>
+                <option>导演</option>
+                <option>编剧</option>
+                <option>导演/编剧</option>
+                <option>影视学生</option>
+                <option>其他创作者</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>联系电话</label>
+              <input type="text" placeholder="请输入手机号或常用电话" />
+            </div>
+            <div class="field">
+              <label>联系邮箱</label>
+              <input type="email" placeholder="请输入常用邮箱" />
+            </div>
+            <div class="field-full">
+              <label>过往作品链接</label>
+              <input type="url" placeholder="https://" />
+            </div>
+          </form>
+          <div class="submit-row">
+            <span class="btn btn-primary" onclick="submitFakeForm()">提交报名</span>
+            <span class="btn btn-secondary" onclick="showPage('about')">查看规则说明</span>
+            <span class="submit-status" id="submitStatus">表单已模拟提交。后续可接入真实收集系统。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer container">© 2026 ONELINE TALENT — cinematic interface concept</footer>
 
@@ -727,1058 +997,82 @@
       wrap.appendChild(row);
     });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    function setActiveNav(key) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.page === key);
       });
-    }, { threshold: 0.14 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
-          });
-        }
-      });
-    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
-
-    sections.forEach(section => navObserver.observe(section));
-  </script>
-</body>
-</html>
-        radial-gradient(circle at 86% 14%, rgba(143,184,255,0.16), transparent 24%),
-        linear-gradient(135deg, var(--bg) 0%, var(--bg2) 55%, #101827 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea, select { font: inherit; }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(7,16,27,0.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .nav {
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-    }
-
-    .brand small {
-      color: var(--soft);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.34em;
-    }
-
-    .brand strong {
-      font-size: 24px;
-      letter-spacing: 0.01em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .nav-link,
-    .nav-pill,
-    .subnav-link,
-    .footer-link,
-    .card-link,
-    .cta {
-      transition: .22s ease;
-    }
-
-    .nav-link {
-      color: rgba(255,255,255,0.84);
-      font-size: 15px;
-      padding: 10px 2px;
-      cursor: pointer;
-    }
-
-    .nav-link:hover,
-    .subnav-link:hover,
-    .footer-link:hover { color: #fff; }
-
-    .nav-pill {
-      padding: 12px 18px;
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .nav-pill:hover { background: rgba(255,255,255,0.08); }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 14px);
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 188px;
-      border-radius: 18px;
-      background: rgba(10,19,34,0.96);
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: var(--shadow);
-      padding: 10px;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .subnav-link {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 12px;
-      color: rgba(255,255,255,0.8);
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    .subnav-link:hover { background: rgba(255,255,255,0.08); }
-
-    .page { display: none; }
-    .page.active { display: block; }
-
-    .hero {
-      padding: 86px 0 36px;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 36px;
-      align-items: stretch;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(143,184,255,0.12);
-      border: 1px solid rgba(143,184,255,0.24);
-      color: #dce8ff;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-    }
-
-    h1,h2,h3,h4,p { margin: 0; }
-
-    .hero h1 {
-      margin-top: 22px;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      max-width: 780px;
-    }
-
-    .hero p {
-      margin-top: 24px;
-      max-width: 690px;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.92;
-    }
-
-    .hero-actions, .inline-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .cta-primary {
-      background: #fff;
-      color: #111827;
-    }
-
-    .cta-secondary {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.12);
-      color: #fff;
-    }
-
-    .cta:hover { transform: translateY(-1px); }
-
-    .hero-panel,
-    .panel,
-    .form-panel,
-    .feature-card,
-    .timeline-card,
-    .faq-box,
-    .info-card,
-    .pricing-card,
-    .profile-box,
-    .about-block,
-    .apply-block {
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-panel {
-      padding: 18px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      left: -30px;
-      top: -60px;
-      background: radial-gradient(circle, rgba(109,125,255,0.28), transparent 64%);
-      pointer-events: none;
-    }
-
-    .entry-grid,
-    .grid-3,
-    .grid-4,
-    .pricing-grid,
-    .info-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .entry-grid,
-    .grid-3,
-    .pricing-grid,
-    .info-grid { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-    .entry-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 340px;
-      padding: 26px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(8,15,27,0.84);
-      cursor: pointer;
-    }
-
-    .entry-card:hover { transform: translateY(-6px); background: rgba(12,22,38,0.96); }
-
-    .entry-card::after {
-      content: "";
-      position: absolute;
-      right: -24px;
-      top: -24px;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(143,184,255,0.14), transparent 65%);
-      pointer-events: none;
-    }
-
-    .entry-icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
-      font-size: 28px;
-    }
-
-    .entry-card h3 { margin-top: 22px; font-size: 28px; line-height: 1.2; }
-    .entry-card p { margin-top: 12px; color: var(--muted); font-size: 14px; line-height: 1.9; }
-    .card-link { margin-top: 20px; display: inline-flex; color: var(--accent); font-size: 14px; font-weight: 600; }
-
-    .sub-list {
-      margin-top: 18px;
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .sub-list span {
-      display: block;
-      padding: 9px 10px;
-      border-radius: 12px;
-      color: rgba(255,255,255,0.8);
-      font-size: 14px;
-    }
-
-    .metrics {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .metric {
-      padding: 18px 20px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .metric strong { display: block; font-size: 28px; margin-bottom: 8px; }
-    .metric span { color: var(--soft); font-size: 13px; }
-
-    .section { padding: 28px 0 0; }
-    .page-shell { padding: 42px 0 60px; }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 18px;
-    }
-
-    .section-kicker {
-      color: var(--soft);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      margin-bottom: 10px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -0.03em;
-    }
-
-    .section-desc {
-      max-width: 760px;
-      color: var(--muted);
-      line-height: 1.9;
-      font-size: 15px;
-    }
-
-    .feature-card,
-    .timeline-card,
-    .pricing-card,
-    .info-card,
-    .profile-box,
-    .about-block,
-    .apply-block,
-    .faq-box,
-    .form-panel {
-      padding: 28px;
-    }
-
-    .feature-no,
-    .timeline-step,
-    .small-label {
-      color: var(--soft);
-      font-size: 12px;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-    }
-
-    .feature-card h3,
-    .about-block h3,
-    .apply-block h3,
-    .faq-box h3,
-    .pricing-card h3,
-    .profile-box h3,
-    .info-card h3 { margin-top: 16px; font-size: 28px; }
-
-    .feature-card p,
-    .timeline-card p,
-    .about-block p,
-    .apply-block p,
-    .faq-box p,
-    .pricing-card p,
-    .profile-box p,
-    .info-card p { margin-top: 14px; color: var(--muted); line-height: 1.9; font-size: 14px; }
-
-    .timeline-card h4 { margin-top: 14px; font-size: 22px; }
-
-    .faq-list .faq-box + .faq-box,
-    .stack > * + * { margin-top: 18px; }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-    }
-
-    .list {
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .list li {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.88);
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .price {
-      margin-top: 16px;
-      font-size: 34px;
-      font-weight: 700;
-    }
-
-    .price span { font-size: 16px; color: var(--soft); font-weight: 500; }
-
-    .tag {
-      display: inline-flex;
-      margin-top: 16px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      background: rgba(143,184,255,0.12);
-      border: 1px solid rgba(143,184,255,0.22);
-      color: #dce8ff;
-    }
-
-    .profile-top {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(143,184,255,0.22), rgba(109,125,255,0.28));
-      display: grid;
-      place-items: center;
-      font-size: 34px;
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .profile-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .meta-card {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .meta-card .value { font-size: 22px; font-weight: 700; }
-    .meta-card .label { margin-top: 6px; font-size: 13px; color: var(--soft); }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .field,
-    .full {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .full { grid-column: 1 / -1; }
-
-    label {
-      font-size: 14px;
-      color: rgba(255,255,255,0.88);
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
-      color: #fff;
-      border-radius: 16px;
-      padding: 14px 16px;
-      outline: none;
-    }
-
-    textarea { resize: vertical; min-height: 120px; }
-    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.34); }
-    input:focus, textarea:focus, select:focus { border-color: rgba(143,184,255,0.5); }
-
-    .notice {
-      margin-top: 18px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(143,184,255,0.08);
-      border: 1px solid rgba(143,184,255,0.18);
-      color: #dce8ff;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .submit-row {
-      margin-top: 22px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .submit-status {
-      font-size: 14px;
-      color: var(--success);
-      display: none;
-    }
-
-    .submit-status.show { display: inline-block; }
-
-    .footer {
-      padding: 38px 0 64px;
-      color: var(--soft);
-      font-size: 13px;
-    }
-
-    .footer-line {
-      height: 1px;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 18px;
-    }
-
-    .hidden-mobile { display: inline; }
-
-    @media (max-width: 1120px) {
-      .hero,
-      .split,
-      .grid-4,
-      .entry-grid,
-      .grid-3,
-      .pricing-grid,
-      .info-grid,
-      .metrics,
-      .profile-meta,
-      .form-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 780px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      .nav {
-        min-height: 72px;
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 14px 0;
-      }
-      .nav-links { width: 100%; gap: 12px 14px; }
-      .hero { padding-top: 52px; }
-      .hero p { font-size: 16px; }
-      .hero-panel,
-      .panel,
-      .form-panel,
-      .feature-card,
-      .timeline-card,
-      .faq-box,
-      .info-card,
-      .pricing-card,
-      .profile-box,
-      .about-block,
-      .apply-block { border-radius: 24px; }
-      .profile-top { grid-template-columns: 1fr; }
-      .avatar { width: 72px; height: 72px; }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav">
-      <div class="brand" onclick="showPage('home')">
-        <small>One-Line Talent</small>
-        <strong>一句成像</strong>
-      </div>
-      <nav class="nav-links">
-        <span class="nav-link" onclick="showPage('home')">首页</span>
-        <span class="nav-link" onclick="showPage('profile')">个人主页</span>
-        <div class="dropdown">
-          <span class="nav-link">关于我们</span>
-          <div class="dropdown-menu">
-            <span class="subnav-link" onclick="showPage('about')">项目介绍</span>
-            <span class="subnav-link" onclick="showPage('about')">赛制说明</span>
-            <span class="subnav-link" onclick="showPage('about')">联系方式</span>
-          </div>
-        </div>
-        <span class="nav-pill" onclick="showPage('apply')">报名参加</span>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="page-home" class="page active">
-      <div class="container">
-        <div class="hero">
-          <div>
-            <div class="eyebrow">青年短片提案征集与扶持平台</div>
-            <h1>一句话，拍出来。</h1>
-            <p>
-              一句成像面向青年导演、编剧、影视学生与各类青年创作者，征集一句话电影概念，并通过报名、筛选、扶持、成片与传播展示，形成一个从创意到落地的闭环平台。它不是传统重材料、重门槛的创投入口，而是一个更轻、更快、更适合社交媒体时代传播的电影概念平台。
-            </p>
-            <div class="hero-actions">
-              <span class="cta cta-primary" onclick="showPage('apply')">立即报名</span>
-              <span class="cta cta-secondary" onclick="showPage('about')">了解机制</span>
-            </div>
-            <div class="metrics">
-              <div class="metric"><strong>4轮</strong><span>首年征集计划</span></div>
-              <div class="metric"><strong>10席</strong><span>季度 shortlist</span></div>
-              <div class="metric"><strong>2席</strong><span>季度 winner</span></div>
-            </div>
-          </div>
-
-          <div class="hero-panel">
-            <div class="entry-grid">
-              <div class="entry-card" onclick="showPage('profile')">
-                <div class="entry-icon">👤</div>
-                <h3>个人主页</h3>
-                <p>进入个人中心，查看创作者档案、报名记录、项目进度、入围状态与通知信息。个人主页独立成页，更像正式平台而不是单一落地页。</p>
-                <span class="card-link">进入个人主页 →</span>
-              </div>
-              <div class="entry-card" onclick="showPage('about')">
-                <div class="entry-icon">ℹ️</div>
-                <h3>关于我们</h3>
-                <p>单独页面呈现项目背景、项目机会、产品服务、赛制设计、扶持机制与品牌逻辑，建立完整的信任和认知框架。</p>
-                <div class="sub-list">
-                  <span>项目介绍</span>
-                  <span>FAQ 与赛制</span>
-                  <span>联系方式</span>
-                </div>
-                <span class="card-link">查看详细介绍 →</span>
-              </div>
-              <div class="entry-card" onclick="showPage('apply')">
-                <div class="entry-icon">✍️</div>
-                <h3>报名参加</h3>
-                <p>独立的报名收集页面，完整填写项目名称、一句话概念、项目简介、资金用途、主创简介、过往作品链接与联系方式。</p>
-                <span class="card-link">进入报名表单 →</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <div class="section-kicker">Core Positioning</div>
-              <h2 class="section-title">不是传统创投，而是更轻量的创意扶持入口</h2>
-              <p class="section-desc">网站内容已经按策划书逻辑重写：首页不只是漂亮，而是先把项目最重要的商业逻辑和参与逻辑讲清楚：低门槛、高传播、快筛选、真扶持。</p>
-            </div>
-          </div>
-          <div class="grid-3">
-            <div class="feature-card">
-              <div class="feature-no">01</div>
-              <h3>一句话即可报名</h3>
-              <p>用户不需要一开始就提交厚重的创投材料，只要用一句话说明故事 premise，再配合简短项目信息，就能获得被行业看见的第一步机会。</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-no">02</div>
-              <h3>报名—评审—扶持闭环</h3>
-              <p>平台通过持续征集和周期性评审，筛出入围及优胜项目，给予现金、器材、后期、导师与传播支持，把创意从概念推进到成片。</p>
-            </div>
-            <div class="feature-card">
-              <div class="feature-no">03</div>
-              <h3>创作者人才池</h3>
-              <p>无论项目是否最终获奖，优秀主创都将进入平台人才库，为品牌短片、广告叙事、影展创投与制片项目持续输送创作者资源。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="section-head">
-            <div>
-              <div class="section-kicker">Process</div>
-              <h2 class="section-title">首页可见的参与路径</h2>
-            </div>
-          </div>
-          <div class="grid-4">
-            <div class="timeline-card">
-              <div class="timeline-step">Step 01</div>
-              <h4>注册创作者</h4>
-              <p>先进入个人主页，建立基本档案，为后续报名、接收通知与项目跟踪提供统一入口。</p>
-            </div>
-            <div class="timeline-card">
-              <div class="timeline-step">Step 02</div>
-              <h4>查看规则</h4>
-              <p>在关于我们页面理解项目定位、赛制机制、评审维度、扶持内容与报名价格。</p>
-            </div>
-            <div class="timeline-card">
-              <div class="timeline-step">Step 03</div>
-              <h4>提交项目</h4>
-              <p>进入报名页面，完整提交一句话概念、项目简介、资金用途、主创信息与作品链接。</p>
-            </div>
-            <div class="timeline-card">
-              <div class="timeline-step">Step 04</div>
-              <h4>等待评审</h4>
-              <p>月度进入项目池，季度评出 shortlist 与 winner，优胜项目获得现金和资源扶持。</p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section id="page-profile" class="page">
-      <div class="container page-shell">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">Creator Center</div>
-            <h2 class="section-title">个人主页</h2>
-            <p class="section-desc">这是独立页面，不再只是首页上的一个卡片。这里模拟了创作者注册后的个人中心状态，用来承接真实平台化运营。</p>
-          </div>
-          <span class="cta cta-secondary" onclick="showPage('apply')">去提交项目</span>
-        </div>
-
-        <div class="split">
-          <div class="profile-box">
-            <div class="profile-top">
-              <div class="avatar">导演</div>
-              <div>
-                <div class="small-label">Creator Profile</div>
-                <h3>张一行 / 青年导演 · 编剧</h3>
-                <p>来自北京电影学院短片创作方向，关注都市异化、代际关系与高概念叙事。正在开发一句话概念项目《她醒来时拥有别人的脸》。</p>
-              </div>
-            </div>
-            <div class="profile-meta">
-              <div class="meta-card">
-                <div class="value">03</div>
-                <div class="label">累计提交项目</div>
-              </div>
-              <div class="meta-card">
-                <div class="value">01</div>
-                <div class="label">入围 shortlist</div>
-              </div>
-              <div class="meta-card">
-                <div class="value">A</div>
-                <div class="label">创作者评级</div>
-              </div>
-            </div>
-            <ul class="list">
-              <li>当前状态：2026 Q1 征集中，项目已进入初筛。</li>
-              <li>系统提醒：请于 3 月 28 日前补充视觉参考图，可提升评审阅读效率。</li>
-              <li>人才库标签：高概念、类型片、女性叙事、都市青年。</li>
-            </ul>
-          </div>
-
-          <div class="stack">
-            <div class="info-card">
-              <div class="small-label">Recent Submission</div>
-              <h3>最近一次提交</h3>
-              <p>项目名称：《她醒来时拥有别人的脸》</p>
-              <p>一句话概念：一名沉迷外貌管理的年轻女性在一次医美事故后，每天醒来都会变成另一个人，她必须在崩塌的身份里找回自我。</p>
-              <span class="tag">状态：待复核</span>
-            </div>
-            <div class="info-card">
-              <div class="small-label">What You Can Do</div>
-              <h3>个人主页可继续扩展</h3>
-              <p>后续可以继续加登录、短信验证、作品管理、付款记录、报名记录、评委反馈、通知中心、发票申请等真实功能。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="page-about" class="page">
-      <div class="container page-shell">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">About The Project</div>
-            <h2 class="section-title">关于我们</h2>
-            <p class="section-desc">本页按照策划书内容重写成官网表达。不是堆原文，而是把项目背景、机会、服务、商业模式和机制拆成官网用户能读懂的结构。</p>
-          </div>
-        </div>
-
-        <div class="stack">
-          <div class="about-block">
-            <div class="small-label">Project Overview</div>
-            <h3>一句成像是什么</h3>
-            <p>一句成像（One-Line Talent）是一个面向青年导演、编剧、影视学生与跨界创作者的短片提案征集与扶持平台。用户以一句话电影概念作为入口，通过基础报名机制进入项目池，再由专业评审筛选出入围与优胜项目，获得现金、制作资源、导师辅导与传播支持，逐步形成“征集—筛选—扶持—成片—案例沉淀”的闭环。</p>
-          </div>
-
-          <div class="grid-3">
-            <div class="about-block">
-              <div class="small-label">Background</div>
-              <h3>为什么要做</h3>
-              <p>中国市场长期缺少一个真正轻量、低门槛、传播性强、又能持续更新的电影概念扶持入口。很多青年创作者停留在概念期，缺少第一次进入行业视野的机会。一句成像希望解决的，正是概念期项目“有创意，但还没有入口”的问题。</p>
-            </div>
-            <div class="about-block">
-              <div class="small-label">Opportunity</div>
-              <h3>机会在哪里</h3>
-              <p>传统电影扶持往往是低频、重押注、高失败成本；而一句成像的逻辑更接近高频筛选、高频产出。报名费构建项目池，概念筛选提升效率，高概念、短表达与强传播特性，也更适合社交媒体时代的项目发现机制。</p>
-            </div>
-            <div class="about-block">
-              <div class="small-label">Audience</div>
-              <h3>面向谁</h3>
-              <p>18—35 岁导演、编剧、影视学生、青年创作者、广告导演转叙事导演，以及所有拥有电影创意但缺少现实入口的人。</p>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="small-label">Core Services</div>
-            <h3>平台提供什么</h3>
-            <div class="info-grid" style="margin-top:18px;">
-              <div class="info-card">
-                <h3>征集服务</h3>
-                <p>项目名称、一句话概念、100—200 字简介、资金用途说明、主创简介、作品链接、视觉参考图与联系方式收集。</p>
-              </div>
-              <div class="info-card">
-                <h3>扶持服务</h3>
-                <p>现金扶持、器材支持、后期支持、导师辅导、官方专访、合作媒体曝光、影展或展映推荐机会。</p>
-              </div>
-              <div class="info-card">
-                <h3>增值服务</h3>
-                <p>评委简评、一对一提案诊断、预算模板、提案包装服务、制片资料包、路演训练与法务合同模板。</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="small-label">Competition Design</div>
-            <h3>赛制与评审</h3>
-            <div class="grid-4" style="margin-top:18px;">
-              <div class="timeline-card">
-                <div class="timeline-step">Monthly</div>
-                <h4>月度征集</h4>
-                <p>每月开放报名，持续累积项目池。</p>
-              </div>
-              <div class="timeline-card">
-                <div class="timeline-step">Quarterly</div>
-                <h4>季度评审</h4>
-                <p>每季度评出 shortlist 10 个，winner 2 个。</p>
-              </div>
-              <div class="timeline-card">
-                <div class="timeline-step">Annual</div>
-                <h4>年度评优</h4>
-                <p>从季度 winner 中评出年度重点扶持项目 1—2 个。</p>
-              </div>
-              <div class="timeline-card">
-                <div class="timeline-step">Criteria</div>
-                <h4>评审维度</h4>
-                <p>概念强度、可拍性、作者表达、传播潜力、完成概率。</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="small-label">Commercial Model</div>
-            <h3>商业模式</h3>
-            <p>平台以基础报名费作为第一层收入，用于筛选有效用户与覆盖基础运营成本；同时通过与手机品牌、摄影机品牌、后期公司、剪辑软件、青年文化品牌、电影节单元与艺术院线合作，共同推出专项扶持与联合传播。入围及优胜主创还能沉淀进人才库，后续向品牌短片、广告项目、创投与制片公司输出导演、编剧与项目资源。</p>
-          </div>
-
-          <div class="about-block">
-            <div class="small-label">Contact</div>
-            <h3>联系方式</h3>
-            <ul class="list">
-              <li>官方邮箱：hello@onelinetalent.com</li>
-              <li>商务合作：brand@onelinetalent.com</li>
-              <li>微信公众号：一句成像 One-Line Talent</li>
-              <li>项目咨询时间：工作日 10:00—18:00</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="page-apply" class="page">
-      <div class="container page-shell">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">Submission Form</div>
-            <h2 class="section-title">报名参加</h2>
-            <p class="section-desc">这里已经改成独立表单页，内容字段依据策划书自动补齐。当前为静态收集演示版，后续你可以把它接到飞书表单、Notion、Google Forms 或自建数据库。</p>
-          </div>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="small-label">Early Bird</div>
-            <h3>早鸟报名</h3>
-            <div class="price">29<span> 元</span></div>
-            <p>适合尽早提交的创作者。保留完整评审资格，进入月度项目池。</p>
-          </div>
-          <div class="pricing-card">
-            <div class="small-label">Standard</div>
-            <h3>标准报名</h3>
-            <div class="price">39<span> 元</span></div>
-            <p>基础报名版本，适用于常规征集周期。</p>
-          </div>
-          <div class="pricing-card">
-            <div class="small-label">Review Edition</div>
-            <h3>带简评版</h3>
-            <div class="price">59<span> 元</span></div>
-            <p>在报名基础上，附带简短评审意见，适合希望获得反馈的创作者。</p>
-          </div>
-        </div>
-
-        <div class="form-panel" style="margin-top:18px;">
-          <div class="small-label">Application Form</div>
-          <h3 style="margin-top:16px; font-size:28px;">一句成像报名表</h3>
-          <p style="margin-top:14px; color:var(--muted); line-height:1.9; font-size:14px;">请尽量把一句话概念写得明确、有画面感，并在资金用途说明中说明扶持资金的使用方向。表单当前不会真正上传服务器，仅用于官网界面演示。</p>
-
-          <form id="applyForm" class="form-grid">
-            <div class="field">
-              <label>项目名称</label>
-              <input type="text" placeholder="例如：她醒来时拥有别人的脸" required />
-            </div>
-            <div class="field">
-              <label>报名类型</label>
-              <select>
-                <option>早鸟报名 29 元</option>
-                <option>标准报名 39 元</option>
-                <option>带简评版 59 元</option>
-              </select>
-            </div>
-            <div class="full">
-              <label>一句话概念</label>
-              <textarea placeholder="请用一句话概括你的电影概念，尽量同时体现故事 premise 与吸引力。" required></textarea>
-            </div>
-            <div class="full">
-              <label>100—200 字项目简介</label>
-              <textarea placeholder="请补充故事背景、角色关系、核心冲突与项目气质。"></textarea>
-            </div>
-            <div class="full">
-              <label>资金用途说明</label>
-              <textarea placeholder="例如：扶持资金将主要用于场景搭建、特殊化妆、摄影器材与后期声音制作。"></textarea>
-            </div>
-            <div class="field">
-              <label>主创姓名</label>
-              <input type="text" placeholder="填写导演或主创姓名" />
-            </div>
-            <div class="field">
-              <label>身份方向</label>
-              <select>
-                <option>导演</option>
-                <option>编剧</option>
-                <option>导演/编剧</option>
-                <option>影视学生</option>
-                <option>广告导演转叙事导演</option>
-                <option>其他创作者</option>
-              </select>
-            </div>
-            <div class="full">
-              <label>主创简介</label>
-              <textarea placeholder="请简述你的创作经历、风格关键词和过往成绩。"></textarea>
-            </div>
-            <div class="field">
-              <label>过往作品链接</label>
-              <input type="url" placeholder="https://" />
-            </div>
-            <div class="field">
-              <label>视觉参考图链接（可选）</label>
-              <input type="url" placeholder="https://" />
-            </div>
-            <div class="field">
-              <label>联系电话</label>
-              <input type="text" placeholder="请输入手机号或常用电话" />
-            </div>
-            <div class="field">
-              <label>联系邮箱</label>
-              <input type="email" placeholder="请输入常用邮箱" />
-            </div>
-            <div class="full">
-              <label>补充说明（可选）</label>
-              <textarea placeholder="你也可以在这里补充项目目前的开发阶段、已有合作资源或特殊需求。"></textarea>
-            </div>
-          </form>
-
-          <div class="notice">说明：正式版可接入付款系统、报名数据库、邮件通知和后台审核系统。当前官网版本主要先完成页面结构与表单展示。</div>
-
-          <div class="submit-row">
-            <button class="cta cta-primary" type="button" onclick="submitFakeForm()">提交报名</button>
-            <span class="cta cta-secondary" onclick="showPage('about')">查看规则说明</span>
-            <span id="submitStatus" class="submit-status">表单已模拟提交。后续可接入真实收集系统。</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer container">
-    <div class="footer-line"></div>
-    <div>© 2026 一句成像 One-Line Talent. All Rights Reserved.</div>
-  </footer>
-
-  <script>
     function showPage(page) {
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('page-' + page);
-      if (target) target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      history.replaceState(null, '', '#' + page);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+
+      if (page === 'home') {
+        setActiveNav('home');
+        history.replaceState(null, '', '#home');
+        observeHomeSections();
+      } else {
+        setActiveNav(page);
+        history.replaceState(null, '', '#' + page);
+      }
+    }
+
+    function scrollHome(sectionId) {
+      showPage('home');
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 30);
     }
 
     function submitFakeForm() {
       const status = document.getElementById('submitStatus');
       status.classList.add('show');
-      setTimeout(() => status.classList.remove('show'), 4000);
+      setTimeout(() => status.classList.remove('show'), 3500);
     }
 
-    (function initPage() {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    let homeSectionObserver;
+    function observeHomeSections() {
+      if (homeSectionObserver) homeSectionObserver.disconnect();
+      const sections = ['hero', 'works', 'info'];
+      homeSectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && document.getElementById('page-home').classList.contains('active')) {
+            const id = entry.target.id;
+            if (id === 'hero') setActiveNav('home');
+            if (id === 'works') setActiveNav('works');
+            if (id === 'info') setActiveNav('info');
+          }
+        });
+      }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) homeSectionObserver.observe(el);
+      });
+    }
+
+    (function init() {
       const hash = location.hash.replace('#', '');
-      const allowed = ['home', 'profile', 'about', 'apply'];
-      if (allowed.includes(hash)) {
+      const pages = ['home', 'about', 'profile', 'apply'];
+      if (pages.includes(hash)) {
         showPage(hash);
       } else {
         showPage('home');
       }
+      observeHomeSections();
     })();
   </script>
 </body>
